@@ -1,9 +1,10 @@
 /**
  * Created by MisterNT on 4/30/2017.
  */
-import Connection, {Sequelize} from './model'
+const Connection = require('./model')
+const Sequelize  = require('sequelize')
 
-export const User = Connection.define('users', {
+const User = Connection.define('users', {
     username: {
         type: Sequelize.STRING,
         unique: true
@@ -30,3 +31,5 @@ export const User = Connection.define('users', {
     underscored: true,
     freezeTableName: true // Model tableName will be the same as the model name
 });
+
+module.exports = User;

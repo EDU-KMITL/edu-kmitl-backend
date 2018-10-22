@@ -1,8 +1,8 @@
 "use strict";
-import express      from 'express';
-import path         from 'path';
-import bodyParser from 'body-parser';
-import routes       from './routes';
+const express = require('express')
+const path   = require('path');
+const bodyParser = require('body-parser')
+const routes = require('./routes')
 
 
 //using let

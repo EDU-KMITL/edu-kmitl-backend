@@ -1,4 +1,4 @@
-import Connection from '../models/model'
+const Connection = require('../models/model')
 const post = function (req, res, next) {
     Connection
         .authenticate()
@@ -14,6 +14,5 @@ const post = function (req, res, next) {
 
 
 };
-
-export default post
+module.exports = post;
 

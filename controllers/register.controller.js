@@ -1,9 +1,9 @@
 /**
  * Created by MisterNT on 4/30/2017.
  */
-import Validator from 'validatorjs';
-import {User} from './../models/user.model'
-import JWT from 'jsonwebtoken'
+const Validator = require('validatorjs')
+const  User = require('./../models/user.model')
+const JWT = require('jsonwebtoken')
 const env  = process.env.NODE_ENV || 'development';
 const config    = require('./../config/config.json')[env];
 const Register = function (req, res) {
@@ -72,4 +72,4 @@ const Register = function (req, res) {
 
 }
 
-export default Register
+module.exports = Register;

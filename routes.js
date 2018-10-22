@@ -1,10 +1,10 @@
-import express from 'express'
+const  express = require('express')
 const router = express.Router();
 
-import Main from './controllers/index'
-import Register from './controllers/register.controller'
-import Login from  './controllers/login.controller'
-import Users from  './controllers/users.controller'
+const Main = require('./controllers/index')
+const Register = require('./controllers/register.controller')
+const Login =  require('./controllers/login.controller')
+const Users =  require('./controllers/users.controller')
 /* GET home page. */
 router.get('/', Main);
 router.post('/register', Register);

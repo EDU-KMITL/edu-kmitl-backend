@@ -1,10 +1,10 @@
 /**
  * Created by MisterNT on 4/30/2017.
  */
-import Validator from 'validatorjs';
-import { User } from './../models/user.model'
-import JWT from 'jsonwebtoken'
-import ignoreCase from 'ignore-case';
+const Validator = require('validatorjs')
+const  User = require('./../models/user.model')
+const JWT = require('jsonwebtoken')
+const ignoreCase = require('ignore-case')
 const env = process.env.NODE_ENV || 'development';
 const config    = require('./../config/config.json')[env];
 
@@ -84,4 +84,4 @@ const Users = function (req, res) {
         res.status(400).json({ success: false, message: 'Failed_to_authenticate_token_send_header' });
     }
 }
-export default Users
+module.exports = Users;

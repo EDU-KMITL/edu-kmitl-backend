@@ -1,9 +1,9 @@
 /**
  * Created by MisterNT on 5/1/2017.
  */
-import Validator from 'validatorjs';
-import {User} from './../models/user.model'
-import JWT from 'jsonwebtoken'
+const  Validator = require('validatorjs');
+const  User = require('./../models/user.model')
+const  JWT = require('jsonwebtoken')
 
 const env  = process.env.NODE_ENV || 'development';
 const config    = require('./../config/config.json')[env];
@@ -46,4 +46,4 @@ const Login = function (req, res) {
                 })
 
 }
-export default Login
+module.exports = Login;
