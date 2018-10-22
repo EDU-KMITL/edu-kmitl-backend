@@ -16,9 +16,9 @@
   },
   "production": {
     "username": "root",
-    "password": null,
+    "password": "password#10",
     "database": "auth_service",
-    "host": "127.0.0.1",
+    "host": "35.198.229.111",
     "dialect": "mysql",
     "jwt_secret": "JnLRmvCURZFqHeJiYksaCwdqjwndUBMeNHbvp7z9zvw8QMU4LugZpyXInADb"
   }
