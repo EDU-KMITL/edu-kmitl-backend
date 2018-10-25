@@ -4,7 +4,7 @@ const post = function (req, res, next) {
         .authenticate()
         .then(function (err) {
             console.log('Model has been established successfully.');
-            res.json("Model has been established successfully!");
+            res.json("micro service edu.kmitl.ac.th");
         })
         .catch(function (err) {
             console.log('Unable to connect to the database:', err);
