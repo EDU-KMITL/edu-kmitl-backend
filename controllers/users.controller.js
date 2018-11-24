@@ -2,7 +2,7 @@
  * Created by MisterNT on 4/30/2017.
  */
 const Validator = require('validatorjs')
-const  User = require('./../models/user.model')
+const User = require('./../models/user')
 const JWT = require('jsonwebtoken')
 const ignoreCase = require('ignore-case')
 const env = process.env.NODE_ENV || 'development';

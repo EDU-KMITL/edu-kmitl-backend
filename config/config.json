@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "root",
+    "username": "misternt",
     "password": "password#10",
-    "database": "auth_service",
-    "host": "35.198.229.111",
-    "dialect": "mysql",
+    "database": "postgres",
+    "host": "35.198.223.28",
+    "dialect": "postgres",
     "jwt_secret": "JnLRmvCURZFqHeJiYksaCwdqjwndUBMeNHbvp7z9zvw8QMU4LugZpyXInADb"
   },
   "test": {
@@ -12,14 +12,15 @@
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres",
+    "jwt_secret": "JnLRmvCURZFqHeJiYksaCwdqjwndUBMeNHbvp7z9zvw8QMU4LugZpyXInADb"
   },
   "production": {
     "username": "root",
-    "password": "password#10",
-    "database": "auth_service",
-    "host": "35.198.229.111",
-    "dialect": "mysql",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
     "jwt_secret": "JnLRmvCURZFqHeJiYksaCwdqjwndUBMeNHbvp7z9zvw8QMU4LugZpyXInADb"
   }
 }

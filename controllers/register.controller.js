@@ -2,7 +2,7 @@
  * Created by MisterNT on 4/30/2017.
  */
 const Validator = require('validatorjs')
-const  User = require('./../models/user.model')
+const {User} = require('./../models')
 const JWT = require('jsonwebtoken')
 const env  = process.env.NODE_ENV || 'development';
 const config    = require('./../config/config.json')[env];
@@ -10,60 +10,54 @@ const Register = function (req, res) {
     User
         .findAndCountAll({
             where: {
-                username: req.body.username
+                email: req.body.email
             }
         })
         .then(function (result) {
             if (result.count === 0) {
 
                 const rules = {
-                    username: 'required',
-                    password: 'required',
-                    firstname: 'required',
-                    lastname: 'required',
-                    image: 'required',
-                    gender: 'required',
-                    birthday: 'required|date'
-
+                    email: 'required|email',
+                    password: 'required'
                 };
 
                 let validation = new Validator(req.body, rules);
+                var email_KMITL = req.body.email.split("@").map(function (val) {
+                    return (val);
+                  });
+                 
                 validation.passes(function () {
-                    User.create({
-                        username: req.body.username,
-                        password: req.body.password,
-                        firstname: req.body.firstname,
-                        lastname: req.body.lastname,
-                        image: req.body.image,
-                        gender: req.body.gender,
-                        birthday: req.body.birthday
+                    if(email_KMITL[1] != "kmitl.ac.th"){
+                        return res.status(200).json({
+                            success: false,
+                            message: "โปรดใช้อีเมล์สถาบัน!"
+                        });
+                    }else {
+                        User.create({
+                        email: req.body.email,
+                        password: req.body.password
                     }).then(function (succcess) {
+                      let tokens = JWT.sign({  email: req.body.email },config.jwt_secret , { expiresIn: '1h' })
 
-                      let tokens = JWT.sign({  username: req.body.username,
-                                firstname: req.body.firstname,
-                                lastname: req.body.lastname,
-                                image: req.body.image,
-                                gender: req.body.gender,
-                                birthday: req.body.birthday
-                     },config.jwt_secret , { expiresIn: '1h' })
-
-                        res.status(200).send({
+                        res.status(200).json({
                             success: true,
                             data: succcess,
-                            token: tokens
+                            token: tokens,
+                            message :"สมัครสมาชิกรียบร้อยแล้ว"
                         });
 
                     })
+                }
                 });
 
                 validation.fails(function () {
-                    res.status(400).send(validation.errors);
+                    res.status(200).json(validation.errors);
                 });
 
             } else {
-                return res.status(400).send({
+                return res.status(200).json({
                     success: false,
-                    message: "USER_IS_ALREADY"
+                    message: "มีอีเมล์นี้แล้วในระบบ"
                 });
             }
 

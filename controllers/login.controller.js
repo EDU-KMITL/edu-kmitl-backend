@@ -1,49 +1,52 @@
 /**
  * Created by MisterNT on 5/1/2017.
  */
-const  Validator = require('validatorjs');
-const  User = require('./../models/user.model')
-const  JWT = require('jsonwebtoken')
+const Validator = require('validatorjs');
+const {User} = require('./../models')
+const JWT = require('jsonwebtoken')
 
-const env  = process.env.NODE_ENV || 'development';
-const config    = require('./../config/config.json')[env];
+const env = process.env.NODE_ENV || 'development';
+const config = require('./../config/config.json')[env];
 const Login = function (req, res) {
 
-                  const rules = {
-                    username: 'required',
-                    password: 'required'                
-                 }
+  const rules = {
+    email: 'required|email',
+    password: 'required'
+  }
 
-                let validation = new Validator(req.body, rules);
-                validation.passes(function () {
-                
-                 User.findOne({ where: {username: req.body.username , password : req.body.password} }).then(function(User) {
-                 let arrays = User;
-                 if(arrays != null){
+  let validation = new Validator(req.body, rules);
+  validation.passes(function () {
 
-                let tokens = JWT.sign({  username: req.body.username,
-                 firstname: req.body.firstname,
-                 lastname: req.body.lastname,
-                 image: req.body.image,
-                 gender: req.body.gender,
-                 birthday: req.body.birthday
-                  },config.jwt_secret , { expiresIn: '1h' })
+    User.findOne({ where: { email: req.body.email  } }).then(async function (resSQL) {
 
-               res.status(200).send({
-               success: true,
-               data: arrays,
-               token: tokens
-               });               
-              }else{
-                res.status(401).json({ success: false, message: 'Failed_to_authenticate_Login' })
-              }
-       
-              })
-                 
-                 });
-                  validation.fails(function () {
-                  res.status(400).send(validation.errors)
-                })
+      if (resSQL != null) {
+        const isPasswordValid = await resSQL.comparePassword(req.body.password)
+      if (!isPasswordValid) {
+        res.status(200).json({ success: false, message: 'รหัสผ่านไม่ถูกต้อง' })
+      }else{
+        let arrays = resSQL;
+        delete arrays.dataValues.password;
+        delete arrays.password;
+        let tokens = JWT.sign({
+          email: req.body.email
+        }, config.jwt_secret, { expiresIn: '1h' })
+
+        res.status(200).json({
+          success: true,
+          data: arrays,
+          token: tokens,
+          message :"ล็อคอินเรียบร้อยแล้ว"
+        });
+      }
+      } else {
+        res.status(200).json({ success: false, message: 'ข้อมูลไม่ถูกต้อง' })
+      }
+
+    })
+  });
+  validation.fails(function () {
+    res.status(200).json(validation.errors)
+  })
 
 }
 module.exports = Login;
