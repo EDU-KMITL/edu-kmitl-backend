@@ -10,7 +10,12 @@ let app = express();
 app.use(cors())
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', routes);
+
+//debug
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//route
+app.use('/apis/', routes);
 
 // using arrow syntax
 app.use((req, res, next) => {

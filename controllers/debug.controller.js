@@ -2,12 +2,12 @@
  * Created by MisterNT on 5/1/2017.
  */
 const Validator = require('validatorjs');
-const {Users} = require('./../models')
+const {User} = require('./../models')
 const {Course} = require('./../models')
 
 const Debug = function (req, res) {
 
-    Users.findOne({ where: { email: "59050300@kmitl.ac.th"  } }).then(function (User) {
+    User.findOne({ where: { email: "59050300@kmitl.ac.th"  } }).then(function (User) {
         User.getCourse().then(function (Course) {
             console.log(Course);
         })
@@ -17,8 +17,7 @@ const Debug = function (req, res) {
         user_id: 1,
         name: "sadad",
         detail: "sadsad",
-        picture: "asdad",
-        status: 1,
+        picture: "asdad"
     }).then(function (succcess) {
         res.status(200).json({
             success: true,

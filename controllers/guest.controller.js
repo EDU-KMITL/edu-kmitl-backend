@@ -11,6 +11,7 @@ const Guest = function (req, res) {
             data: CourseRes
         });
     
-    })    
+    })
+        
 }
 module.exports = Guest;
