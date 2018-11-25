@@ -2,6 +2,14 @@ node_modules/.bin/sequelize model:generate --name Course --attributes uuid:strin
 
 node_modules/.bin/sequelize model:generate --name User --attributes email:string,password:string,role:enum,status:enum
 
+node_modules/.bin/sequelize model:generate --name Meetup --attributes uuid:string,user_id:integer,name:string,detail:string,picture:string,start:string,end:string,location:string,status:enum
+
+node_modules/.bin/sequelize model:generate --name CourseList --attributes uuid:string,user_id:integer
+
+node_modules/.bin/sequelize model:generate --name MeetupList --attributes uuid:string,user_id:integer
+
+node_modules/.bin/sequelize model:generate --name VideoList --attributes uuid:string,user_id:integer,name:string,detail:string,link:string,status:enum
+
 ('BAN', 'PUBLIC', 'PRIVATE') 
 ('ADMIN', 'MEMBER', 'TEACHER', 'OLD_TEACHER','GOLD_TEACHER')
-('NEW', 'ACTIVAT', 'BAN')
+('NEW', 'ACTIVAT', 'BAN')3
