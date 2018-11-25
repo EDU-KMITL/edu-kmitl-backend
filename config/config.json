@@ -16,10 +16,10 @@
     "jwt_secret": "JnLRmvCURZFqHeJiYksaCwdqjwndUBMeNHbvp7z9zvw8QMU4LugZpyXInADb"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "misternt",
+    "password": "password#10",
+    "database": "postgres",
+    "host": "35.198.223.28",
     "dialect": "postgres",
     "jwt_secret": "JnLRmvCURZFqHeJiYksaCwdqjwndUBMeNHbvp7z9zvw8QMU4LugZpyXInADb"
   }
