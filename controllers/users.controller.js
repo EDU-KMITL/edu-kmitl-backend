@@ -147,7 +147,7 @@ const Users = function (req, res) {
                             })
                         break;
                     case "meetup-regis":
-                    MeetupList.create({
+                        MeetupList.create({
                             user_id: decoded.user_id,
                             uuid: req.body.uuid
                         }).then(function (succcess) {
@@ -158,7 +158,7 @@ const Users = function (req, res) {
                             });
                         })
                         break;
-                        case "mycourse-del":
+                    case "mycourse-del":
                         CourseList.destroy(
                             { where: { uuid: req.body.uuid, user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
                                 res.status(200).json({
@@ -167,6 +167,32 @@ const Users = function (req, res) {
                                     message: "ลบเรียบร้อยแล้ว"
                                 });
 
+                            })
+                        break;
+                    case "mycourse-get":
+                        CourseList.findAll({
+                            where: {
+                                user_id: decoded.user_id
+                            }
+                        })
+                            .then(function (result) {
+                                res.status(200).json({
+                                    success: true,
+                                    data: result
+                                });
+                            })
+                        break;
+                    case "mymeetup-get":
+                        MeetupList.findAll({
+                            where: {
+                                user_id: decoded.user_id
+                            }
+                        })
+                            .then(function (result) {
+                                res.status(200).json({
+                                    success: true,
+                                    data: result
+                                });
                             })
                         break;
                     default:
@@ -179,6 +205,6 @@ const Users = function (req, res) {
 
     } else {
         res.status(200).json({ success: false, message: 'Failed_to_authenticate_token_send_header' });
-    }result
+    } result
 }
 module.exports = Users;
