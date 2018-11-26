@@ -6,6 +6,8 @@ const Validator = require('validatorjs');
 const { User } = require('./../models')
 const { Course } = require('./../models')
 const { Meetup } = require('./../models')
+const { CourseList } = require('./../models')
+const { MeetupList } = require('./../models')
 const JWT = require('jsonwebtoken')
 const ignoreCase = require('ignore-case')
 const env = process.env.NODE_ENV || 'development';
@@ -50,19 +52,19 @@ const Users = function (req, res) {
                         });
                         break;
                     case "course-get":
-                    Course.findAll({  
-                                where: {
-                                    user_id: decoded.user_id
-                                }
-                            })
-                            .then(function (result) { 
+                        Course.findAll({
+                            where: {
+                                user_id: decoded.user_id
+                            }
+                        })
+                            .then(function (result) {
                                 res.status(200).json({
                                     success: true,
                                     data: result
                                 });
                             })
                         break;
-                        case "meetup-creact":
+                    case "meetup-creact":
                         let rules_mt = {
                             name: 'required',
                             detail: 'required',
@@ -96,12 +98,12 @@ const Users = function (req, res) {
                         });
                         break;
                     case "meetup-get":
-                    Meetup.findAll({  
-                                where: {
-                                    user_id: decoded.user_id
-                                }
-                            })
-                            .then(function (result) { 
+                        Meetup.findAll({
+                            where: {
+                                user_id: decoded.user_id
+                            }
+                        })
+                            .then(function (result) {
                                 res.status(200).json({
                                     success: true,
                                     data: result
@@ -109,15 +111,39 @@ const Users = function (req, res) {
                             })
                         break;
                     case "add-premisson":
-                    User.update(
-                        { role: "TEACHER" } /* set attributes' value */,
-                        { where: { user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) { 
-                            res.status(200).json({
-                                success: true,
-                                data: result, 
-                                message: 'ยืนยันสิทธิ์เรียบร้อย'
-                            });
-                        })
+                        User.update(
+                            { role: "TEACHER" } /* set attributes' value */,
+                            { where: { user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
+                                res.status(200).json({
+                                    success: true,
+                                    data: result,
+                                    message: 'ยืนยันสิทธิ์เรียบร้อย'
+                                });
+                            })
+                        break;
+                    case "course-regis":
+                            CourseList.create({
+                                user_id: decoded.user_id,
+                                uuid: req.body.uuid
+                            }).then(function (succcess) {
+                                res.status(200).json({
+                                    success: true,
+                                    data: succcess,
+                                    message: "เข้าเรียนเรียบร้อยแล้ว"
+                                });
+                            })
+                        break;
+                    case "course-del":
+                            CourseList.destroy({
+                                user_id: decoded.user_id,
+                                uuid: req.body.uuid
+                            }).then(function (succcess) {
+                                res.status(200).json({
+                                    success: true,
+                                    data: succcess,
+                                    message: "เข้าเรียนเรียบร้อยแล้ว"
+                                });
+                            })
                         break;
                     default:
                         res.status(200).json({ success: false, message: '404_NOT_FOUND' });
