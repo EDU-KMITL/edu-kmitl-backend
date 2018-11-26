@@ -5,7 +5,8 @@ const router = express.Router();
 const Register = require('./controllers/register.controller')
 const Login =  require('./controllers/login.controller')
 const Users =  require('./controllers/users.controller')
-const Guest =  require('./controllers/guest.controller')
+const GuestCourse =  require('./controllers/guestcoures.controller')
+const GuestMeetup =  require('./controllers/guestmeetup.controller')
 const Search =  require('./controllers/search.controller')
 
 
@@ -16,7 +17,9 @@ router.post('/login', Login);
 router.post('/search', Search);
 router.post('/users/:action', Users);
 
-router.get('/', Guest);
+router.get('/coures', GuestCourse);
+router.get('/meetup', GuestMeetup);
+
 
 
 //Debug

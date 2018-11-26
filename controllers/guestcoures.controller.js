@@ -3,7 +3,7 @@
  */
 const {Course} = require('./../models')
 
-const Guest = function (req, res) {
+const GuestCourse = function (req, res) {
 
     Course.findAll({ limit: 20 }).then(function (CourseRes) {
         res.status(200).json({
@@ -14,4 +14,4 @@ const Guest = function (req, res) {
     })
         
 }
-module.exports = Guest;
+module.exports = GuestCourse;

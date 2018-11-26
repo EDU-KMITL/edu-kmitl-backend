@@ -1,12 +1,15 @@
 /**
  * Created by MisterNT on 4/30/2017.
  */
-const Validator = require('validatorjs')
-const User = require('./../models/user')
+
+const Validator = require('validatorjs');
+const { User } = require('./../models')
+const { Course } = require('./../models')
+const { Meetup } = require('./../models')
 const JWT = require('jsonwebtoken')
 const ignoreCase = require('ignore-case')
 const env = process.env.NODE_ENV || 'development';
-const config    = require('./../config/config.json')[env];
+const config = require('./../config/config.json')[env];
 
 const Users = function (req, res) {
 
@@ -15,65 +18,109 @@ const Users = function (req, res) {
         // verifies secret and checks exp
         JWT.verify(req.headers.authorization.split(' ')[1], config.jwt_secret, function (err, decoded) {
             if (err) {
-                res.status(400).json({ success: false, message: 'Failed_to_authenticate_token' });
+                res.status(200).json({ success: false, message: 'Failed_to_authenticate_token' });
             } else {
 
-
                 switch (req.params.action) {
-                    case "forgetpass":
-                        break;
-                    case "update":
+                    case "course-creact":
+                        let rules = {
+                            name: 'required',
+                            detail: 'required',
+                            picture: 'required|url'
+                        };
 
-                        if (req.body.firstname) {
-                            User.update(
-                                { firstname: req.body.firstname } /* set attributes' value */,
-                                { where: { username: decoded.username } } /* where criteria */).then(function (affectedRows) { })
-                        }
-                        if (req.body.lastname) {
-                            User.update(
-                                { lastname: req.body.lastname } /* set attributes' value */,
-                                { where: { username: decoded.username } } /* where criteria */).then(function (affectedRows) { })
-                        }
-                        if (req.body.gender) {
-                            User.update(
-                                { gender: req.body.gender } /* set attributes' value */,
-                                { where: { username: decoded.username } } /* where criteria */).then(function (affectedRows) { })
-                        }
-                        if (req.body.image) {
-                            User.update(
-                                { image: req.body.image } /* set attributes' value */,
-                                { where: { username: decoded.username } } /* where criteria */).then(function (affectedRows) { })
-                        }
-                        if (req.body.birthday) {
-                            let rules = {
-                                birthday: 'required|date'
-                            };
-
-                            let validation = new Validator(req.body, rules);
-                            validation.passes(function () {
-                                User.update(
-                                    { birthday: req.body.birthday } /* set attributes' value */,
-                                    { where: { username: decoded.username } } /* where criteria */).then(function (affectedRows) { })
+                        let validation = new Validator(req.body, rules);
+                        validation.passes(function () {
+                            Course.create({
+                                user_id: decoded.user_id,
+                                name: req.body.name,
+                                detail: req.body.name,
+                                picture: req.body.picture
+                            }).then(function (succcess) {
+                                res.status(200).json({
+                                    success: true,
+                                    data: succcess,
+                                    message: "เพิ่มวิชาเรียนรียบร้อยแล้ว"
+                                });
                             })
-                            validation.fails(function () {
-                                res.status(400).send(validation.errors);
-                            });
-                        }
-                        User.findOne({ where: { username: decoded.username } }).then(function (User) {
-                            let arrays = User;
-                            delete arrays.dataValues.password;
-                            delete arrays.password;
-                            res.status(200).send({
-                                success: true
-                             //   data: arrays
-                            });
                         })
 
+                        validation.fails(function () {
+                            res.status(200).json(validation.errors);
+                        });
                         break;
-                    case "mail_confirm":
+                    case "course-get":
+                    Course.findAll({  
+                                where: {
+                                    user_id: decoded.user_id
+                                }
+                            })
+                            .then(function (result) { 
+                                res.status(200).json({
+                                    success: true,
+                                    data: result
+                                });
+                            })
+                        break;
+                        case "meetup-creact":
+                        let rules_mt = {
+                            name: 'required',
+                            detail: 'required',
+                            picture: 'required|url',
+                            mt_date: 'required',
+                            mt_time: 'required',
+                            location: 'required'
+                        };
+
+                        let validation_mt = new Validator(req.body, rules_mt);
+                        validation_mt.passes(function () {
+                            Meetup.create({
+                                user_id: decoded.user_id,
+                                name: req.body.name,
+                                detail: req.body.name,
+                                picture: req.body.picture,
+                                mt_date: req.body.mt_date,
+                                mt_time: req.body.mt_time,
+                                location: req.body.location
+                            }).then(function (succcess) {
+                                res.status(200).json({
+                                    success: true,
+                                    data: succcess,
+                                    message: "เพิ่มกิจกรรมเรียนรียบร้อยแล้ว"
+                                });
+                            })
+                        })
+
+                        validation_mt.fails(function () {
+                            res.status(200).json(validation_mt.errors);
+                        });
+                        break;
+                    case "meetup-get":
+                    Meetup.findAll({  
+                                where: {
+                                    user_id: decoded.user_id
+                                }
+                            })
+                            .then(function (result) { 
+                                res.status(200).json({
+                                    success: true,
+                                    data: result
+                                });
+                            })
+                        break;
+                    case "add-premisson":
+                    User.update(
+                        { role: "TEACHER" } /* set attributes' value */,
+                        { where: { user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) { 
+                            res.status(200).json({
+                                success: true,
+                                data: result, 
+                                message: 'ยืนยันสิทธิ์เรียบร้อย'
+                            });
+                        })
                         break;
                     default:
-                        res.status(400).json({ success: false, message: '404_NOT_FOUND' });
+                        res.status(200).json({ success: false, message: '404_NOT_FOUND' });
                         break;
                 }
             }
@@ -81,7 +128,7 @@ const Users = function (req, res) {
 
 
     } else {
-        res.status(400).json({ success: false, message: 'Failed_to_authenticate_token_send_header' });
+        res.status(200).json({ success: false, message: 'Failed_to_authenticate_token_send_header' });
     }
 }
 module.exports = Users;

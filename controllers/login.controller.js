@@ -28,7 +28,8 @@ const Login = function (req, res) {
         delete arrays.dataValues.password;
         delete arrays.password;
         let tokens = JWT.sign({
-          email: req.body.email
+          email: req.body.email,
+          user_id: resSQL.id
         }, config.jwt_secret, { expiresIn: '1h' })
 
         res.status(200).json({

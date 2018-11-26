@@ -23,10 +23,10 @@ module.exports = {
       picture: {
         type: Sequelize.STRING
       },
-      start: {
-        type: Sequelize.STRING
+      mt_date: {
+        type: Sequelize.DATE
       },
-      end: {
+      mt_time: {
         type: Sequelize.STRING
       },
       location: {
