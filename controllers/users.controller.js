@@ -117,7 +117,7 @@ const Users = function (req, res) {
                             { where: { user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
                                 res.status(200).json({
                                     success: true,
-                                    data: result,
+                                    data: affectedRows,
                                     message: 'ยืนยันสิทธิ์เรียบร้อย'
                                 });
                             })
@@ -140,7 +140,7 @@ const Users = function (req, res) {
                             { where: { uuid: req.body.uuid, user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
                                 res.status(200).json({
                                     success: true,
-                                    data: succcess,
+                                    data: affectedRows,
                                     message: "ลบเรียบร้อยแล้ว"
                                 });
 
@@ -163,7 +163,7 @@ const Users = function (req, res) {
                             { where: { uuid: req.body.uuid, user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
                                 res.status(200).json({
                                     success: true,
-                                    data: succcess,
+                                    data: affectedRows,
                                     message: "ลบเรียบร้อยแล้ว"
                                 });
 
