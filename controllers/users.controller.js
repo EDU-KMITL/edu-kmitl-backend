@@ -111,7 +111,7 @@ const Users = function (req, res) {
                                 });
                             })
                         break;
-                    case "add-permisson":
+                    case "add-permission":
                         User.update(
                             { role: "TEACHER" } /* set attributes' value */,
                             { where: { user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
