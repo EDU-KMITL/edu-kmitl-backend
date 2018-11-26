@@ -169,7 +169,7 @@ const Users = function (req, res) {
 
                             })
                         break;
-                    case "mycourse-get":
+                /*    case "mycourse-get":
                         CourseList.findAll({
                             where: {
                                 user_id: decoded.user_id
@@ -193,8 +193,8 @@ const Users = function (req, res) {
                                     success: true,
                                     data: result
                                 });
-                            })
-                        break;
+                            }) 
+                        break;*/ 
                     default:
                         res.status(200).json({ success: false, message: '404_NOT_FOUND' });
                         break;
