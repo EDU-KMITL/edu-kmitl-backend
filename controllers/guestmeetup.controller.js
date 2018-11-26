@@ -5,7 +5,7 @@ const {Meetup} = require('./../models')
 
 const GuestMeetup = function (req, res) {
 
-    Meetup.findAll({ limit: 20 }).then(function (Meetup) {
+    Meetup.findAll({ limit: 20 }).then(function (MeetupRes) {
         res.status(200).json({
             success: true,
             data: MeetupRes

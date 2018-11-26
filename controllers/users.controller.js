@@ -179,6 +179,6 @@ const Users = function (req, res) {
 
     } else {
         res.status(200).json({ success: false, message: 'Failed_to_authenticate_token_send_header' });
-    }
+    }result
 }
 module.exports = Users;
