@@ -54,7 +54,8 @@ const Users = function (req, res) {
                     case "course-get":
                         Course.findAll({
                             where: {
-                                user_id: decoded.user_id
+                                user_id: decoded.user_id,
+                                status: "PUBLIC"
                             }
                         })
                             .then(function (result) {
@@ -110,7 +111,7 @@ const Users = function (req, res) {
                                 });
                             })
                         break;
-                    case "add-premisson":
+                    case "add-permisson":
                         User.update(
                             { role: "TEACHER" } /* set attributes' value */,
                             { where: { user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
@@ -122,27 +123,50 @@ const Users = function (req, res) {
                             })
                         break;
                     case "course-regis":
-                            CourseList.create({
-                                user_id: decoded.user_id,
-                                uuid: req.body.uuid
-                            }).then(function (succcess) {
-                                res.status(200).json({
-                                    success: true,
-                                    data: succcess,
-                                    message: "เข้าเรียนเรียบร้อยแล้ว"
-                                });
-                            })
+                        CourseList.create({
+                            user_id: decoded.user_id,
+                            uuid: req.body.uuid
+                        }).then(function (succcess) {
+                            res.status(200).json({
+                                success: true,
+                                data: succcess,
+                                message: "เข้าเรียนเรียบร้อยแล้ว"
+                            });
+                        })
                         break;
                     case "course-del":
-                            CourseList.destroy({
-                                user_id: decoded.user_id,
-                                uuid: req.body.uuid
-                            }).then(function (succcess) {
+                        Course.update(
+                            { status: "DELETE" } /* set attributes' value */,
+                            { where: { uuid: req.body.uuid, user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
                                 res.status(200).json({
                                     success: true,
                                     data: succcess,
-                                    message: "เข้าเรียนเรียบร้อยแล้ว"
+                                    message: "ลบเรียบร้อยแล้ว"
                                 });
+
+                            })
+                        break;
+                    case "meetup-regis":
+                    MeetupList.create({
+                            user_id: decoded.user_id,
+                            uuid: req.body.uuid
+                        }).then(function (succcess) {
+                            res.status(200).json({
+                                success: true,
+                                data: succcess,
+                                message: "เข้าร่วมแล้ว"
+                            });
+                        })
+                        break;
+                        case "mycourse-del":
+                        CourseList.destroy(
+                            { where: { uuid: req.body.uuid, user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
+                                res.status(200).json({
+                                    success: true,
+                                    data: succcess,
+                                    message: "ลบเรียบร้อยแล้ว"
+                                });
+
                             })
                         break;
                     default:
