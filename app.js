@@ -4,7 +4,7 @@ const path   = require('path');
 const bodyParser = require('body-parser')
 const routes = require('./routes')
 const cors = require('cors')
-
+const Debug = require('./debug')
 //using let
 let app = express();
 app.use(cors())
@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //debug
 //app.use(bodyParser.urlencoded({ extended: true }));
-
+new Debug().start()
 //route
 app.use('/apis/', routes);
 
