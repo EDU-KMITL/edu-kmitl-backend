@@ -1,4 +1,7 @@
 const nodemailer = require('nodemailer');
+const fs = require('fs');
+const util = require('util');
+const readFile = util.promisify(fs.readFile);
 
 /* Account UserName */
 var account = {
@@ -17,7 +20,7 @@ function MailService(email,text) {
         }
     })
 }
-async function sendMail(email,msg, callback) {
+async function sendMail(email,link, callback) {
     let transporter = nodemailer.createTransport({
         host: account.host,
         port: account.port,
@@ -34,9 +37,13 @@ async function sendMail(email,msg, callback) {
         subject: 'Comfrim Email From Link Plase', // Subject line
         to: email, // list of receivers
         //text: 'Hello world?', // plain text body
-        html:  ''
+        //html:  ''
     };
-    mailOptions.text = msg
+
+    let data = await readFile('./resources/mail.tempage.html', 'utf8');
+
+    data = data.replace("#linkconfirm",link);
+    mailOptions.html = data
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             callback(error, null)

@@ -1,8 +1,9 @@
 const MailService = require('./services/MailService')
 
+
 class Debug {
-    start() {
-        MailService("wandee016@gmail.com","TEST By EDU CONFRIM")
+    async start() {
+        MailService("59050300@kmitl.ac.th","http://edu.kmitl.ac.th")
     }
 }
 

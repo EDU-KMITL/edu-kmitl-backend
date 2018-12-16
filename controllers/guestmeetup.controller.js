@@ -3,6 +3,7 @@
  */
 const {Meetup} = require('./../models')
 
+
 const GuestMeetup = async function (req, res) {
 
    let MeetupRes = await Meetup.findAll({ limit: 20 }).then( (res) => { return res} )

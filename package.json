@@ -15,7 +15,7 @@
     "cors": "^2.8.5",
     "debug": "^2.6.3",
     "express": "^4.16.4",
-    "fs": "0.0.1-security",
+    "fs": "^0.0.1-security",
     "ignore-case": "^0.1.0",
     "jsonwebtoken": "^8.3.0",
     "morgan": "^1.8.1",
@@ -26,6 +26,7 @@
     "sequelize-cli": "^5.3.0",
     "serve-favicon": "^2.4.2",
     "short-unique-id": "^1.1.1",
+    "util": "^0.11.1",
     "validatorjs": "^3.12.0"
   },
   "devDependencies": {
