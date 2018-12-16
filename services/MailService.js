@@ -2,8 +2,8 @@ const nodemailer = require('nodemailer');
 
 /* Account UserName */
 var account = {
-    user: "wandee016@gmail.com",
-    pass: "misternt559",
+    user: "edu.kmitl.mailservice@gmail.com",
+    pass: "0835897600",
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
@@ -34,7 +34,7 @@ async function sendMail(email,msg, callback) {
         subject: 'Comfrim Email From Link Plase', // Subject line
         to: email, // list of receivers
         //text: 'Hello world?', // plain text body
-       // html: '<b>Hello world?</b>' // html body
+        html:  ''
     };
     mailOptions.text = msg
     transporter.sendMail(mailOptions, (error, info) => {

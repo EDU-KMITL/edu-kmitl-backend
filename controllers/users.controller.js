@@ -181,7 +181,7 @@ const Users = function (req, res) {
                                     data: result
                                 });
                             })
-                        break;
+                        break;*/ 
                     case "mymeetup-get":
                         MeetupList.findAll({
                             where: {
@@ -194,7 +194,7 @@ const Users = function (req, res) {
                                     data: result
                                 });
                             }) 
-                        break;*/ 
+                        break;
                     default:
                         res.status(200).json({ success: false, message: '404_NOT_FOUND' });
                         break;
