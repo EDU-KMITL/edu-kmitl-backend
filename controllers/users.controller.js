@@ -169,7 +169,7 @@ const Users = function (req, res) {
 
                             })
                         break;
-                /*    case "mycourse-get":
+                    case "mycourse-get":
                         CourseList.findAll({
                             where: {
                                 user_id: decoded.user_id
@@ -181,7 +181,7 @@ const Users = function (req, res) {
                                     data: result
                                 });
                             })
-                        break;*/ 
+                        break;
                     case "mymeetup-get":
                         MeetupList.findAll({
                             where: {
