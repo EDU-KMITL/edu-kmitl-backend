@@ -95,7 +95,7 @@ const Users = function (req, res) {
                                
                             })
                         validation_mt.fails(function () {
-                            res.json(validation_mt.errors);
+                           return res.send(validation_mt.errors);
                         });
                         break;
                     case "meetup-get":
