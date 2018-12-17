@@ -151,7 +151,7 @@ const Users = function (req, res) {
                             user_id: decoded.user_id,
                             uuid: req.body.uuid
                         }).then(function (succcess) {
-                            res.status(200).json({
+                           return res.status(200).json({
                                 success: true,
                                 data: succcess,
                                 message: "เข้าร่วมแล้ว"
