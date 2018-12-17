@@ -86,14 +86,14 @@ const Users = function (req, res) {
                                 mt_time: req.body.mt_time,
                                 location: req.body.location
                             }).then((res) => { return res} )
-                                res.status(200).json({
+                                res.json({
                                     success: true,
                                     data: succcess,
                                     message: "เพิ่มกิจกรรมเรียนรียบร้อยแล้ว"
                                 })
                             })
                         validation_mt.fails(function () {
-                            res.status(200).json(validation_mt.errors);
+                            res.json(validation_mt.errors);
                         });
                         break;
                     case "meetup-get":
