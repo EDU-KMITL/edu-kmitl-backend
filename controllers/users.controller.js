@@ -86,7 +86,7 @@ const Users = function (req, res) {
                                 mt_time: req.body.mt_time,
                                 location: req.body.location
                             }).then(function (succcess) {
-                                return res.json({
+                                return res.send({
                                     success: true,
                                     data: succcess,
                                     message: "เพิ่มกิจกรรมเรียนรียบร้อยแล้ว"
