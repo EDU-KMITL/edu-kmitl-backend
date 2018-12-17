@@ -85,13 +85,13 @@ const Users = function (req, res) {
                                 mt_date: req.body.mt_date,
                                 mt_time: req.body.mt_time,
                                 location: req.body.location
-                            }).then((succcess) => 
-                                res.json({
+                            }).then(function (succcess) {
+                                return res.json({
                                     success: true,
                                     data: succcess,
                                     message: "เพิ่มกิจกรรมเรียนรียบร้อยแล้ว"
                                 })
-                             )
+                            })
                                
                             })
                         validation_mt.fails(function () {
