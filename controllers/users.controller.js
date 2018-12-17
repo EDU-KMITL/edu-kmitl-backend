@@ -75,8 +75,8 @@ const Users = function (req, res) {
                             location: 'required'
                         };
 
-                        let validation_mt = new Validator(req.body, rules_mt);
-                        validation_mt.passes(function () {
+                       // let validation_mt = new Validator(req.body, rules_mt);
+                       // validation_mt.passes(function () {
                          Meetup.create({
                                 user_id: decoded.user_id,
                                 name: req.body.name,
@@ -93,10 +93,10 @@ const Users = function (req, res) {
                                 })
                             })
                                
-                            })
-                        validation_mt.fails(function () {
-                           return res.send(validation_mt.errors);
-                        });
+                          //  })
+                       // validation_mt.fails(function () {
+                       //    return res.send(validation_mt.errors);
+                       // });
                         break;
                     case "meetup-get":
                         Meetup.findAll({
