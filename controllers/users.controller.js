@@ -76,8 +76,8 @@ const Users = function (req, res) {
                         };
 
                         let validation_mt = new Validator(req.body, rules_mt);
-                        validation_mt.passes(function () {
-                            Meetup.create({
+                        validation_mt.passes(async function () {
+                         let succcess = await Meetup.create({
                                 user_id: decoded.user_id,
                                 name: req.body.name,
                                 detail: req.body.name,
@@ -85,15 +85,13 @@ const Users = function (req, res) {
                                 mt_date: req.body.mt_date,
                                 mt_time: req.body.mt_time,
                                 location: req.body.location
-                            }).then(function (succcess) {
+                            }).then((res) => { return res} )
                                 res.status(200).json({
                                     success: true,
                                     data: succcess,
                                     message: "เพิ่มกิจกรรมเรียนรียบร้อยแล้ว"
-                                });
+                                })
                             })
-                        })
-
                         validation_mt.fails(function () {
                             res.status(200).json(validation_mt.errors);
                         });
