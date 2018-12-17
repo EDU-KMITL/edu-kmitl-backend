@@ -20,7 +20,7 @@ const Users = function (req, res) {
         // verifies secret and checks exp
         JWT.verify(req.headers.authorization.split(' ')[1], config.jwt_secret, function (err, decoded) {
             if (err) {
-                res.status(200).json({ success: false, message: 'Failed_to_authenticate_token' });
+                return res.status(200).json({ success: false, message: 'Failed_to_authenticate_token' });
             } else {
 
                 switch (req.params.action) {
@@ -39,7 +39,7 @@ const Users = function (req, res) {
                                 detail: req.body.name,
                                 picture: req.body.picture
                             }).then(function (succcess) {
-                                res.status(200).json({
+                                return res.status(200).json({
                                     success: true,
                                     data: succcess,
                                     message: "เพิ่มวิชาเรียนรียบร้อยแล้ว"
@@ -86,7 +86,7 @@ const Users = function (req, res) {
                                 mt_time: req.body.mt_time,
                                 location: req.body.location
                             }).then(function (succcess) {
-                                return res.send({
+                                 return res.send({
                                     success: true,
                                     data: succcess,
                                     message: "เพิ่มกิจกรรมเรียนรียบร้อยแล้ว"
@@ -204,7 +204,7 @@ const Users = function (req, res) {
 
 
     } else {
-        res.status(200).json({ success: false, message: 'Failed_to_authenticate_token_send_header' });
-    } result
+        return res.status(200).json({ success: false, message: 'Failed_to_authenticate_token_send_header' });
+    } 
 }
 module.exports = Users;
