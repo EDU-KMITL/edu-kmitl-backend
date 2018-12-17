@@ -24,12 +24,12 @@ app.use((req, res, next) => {
 
 if (app.get('env') === 'development') {
     app.use((err, req, res, next) => {
-        res.status(500).json({  message: err.message , error: err});
+        return res.status(500).json({  message: err.message , error: err});
     });
 }
 
 app.use((err, req, res, next) => {
-    res.status(500).json({  message: err.message , error: err});
+   return res.status(500).json({  message: err.message , error: err});
 });
 
 
