@@ -1,7 +1,17 @@
 'use strict';
+
+const ShortUniqueId = require('short-unique-id');
 module.exports = (sequelize, DataTypes) => {
   const Meetup = sequelize.define('Meetup', {
-    uuid: DataTypes.STRING,
+    uuid: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+      defaultValue: function () {
+        const rnd = new ShortUniqueId();
+        return rnd.randomUUID(13);
+      },
+      allowNull: false
+    },
     user_id: DataTypes.INTEGER,
     name: DataTypes.STRING,
     detail: DataTypes.STRING,
