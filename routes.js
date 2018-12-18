@@ -1,10 +1,9 @@
-const  express = require('express')
+const express = require('express')
 const router = express.Router();
 
 //Controller
 const Register = require('./controllers/register.controller')
 const Login =  require('./controllers/login.controller')
-const Users =  require('./controllers/users.controller')
 const GuestCourse =  require('./controllers/guestcoures.controller')
 const GuestMeetup =  require('./controllers/guestmeetup.controller')
 const Search =  require('./controllers/search.controller')
