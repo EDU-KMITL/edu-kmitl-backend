@@ -11,9 +11,10 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 //debug
-//app.use(bodyParser.urlencoded({ extended: true }));
-new Debug().start()
+app.use(bodyParser.urlencoded({ extended: true }));
+
 //route
 app.use('/apis/', routes);
 
@@ -23,6 +24,9 @@ app.use((req, res, next) => {
 });
 
 if (app.get('env') === 'development') {
+    //debug
+    app.use(bodyParser.urlencoded({ extended: true }));
+    new Debug().start()
     app.use((err, req, res, next) => {
         return res.status(500).json({  message: err.message , error: err});
     });

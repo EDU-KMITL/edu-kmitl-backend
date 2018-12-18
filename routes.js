@@ -25,8 +25,8 @@ router.get('/coures/:uuid', ViewCoures);
 
 //Auth
 
-router.use('/user', AuthService);
-router.get('/user/coures', GuestCourse);
+//router.use('/user', AuthService);
+router.get('/user/coures',AuthService, GuestCourse);
 
 //Debug
 const Debug =  require('./controllers/debug.controller')
