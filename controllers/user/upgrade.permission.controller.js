@@ -1,19 +1,18 @@
 /**
  * Created by MisterNT on 5/1/2017.
  */
-
+const UserService = require('./../../middleware/UserService')
 const cookie = require('cookie');
 const { User } = require('./../../models')
 
 
 const UpgradePermission = async function (req, res) {
 
-    let cookies = cookie.parse(req.headers.cookie || '');
+    userService = new UserService()
 
-    // Get the visitor name set in the cookie
-    let uid = cookies.uid;
+    let uid = userService.getUid(req);
 
-    let affectedRows = await User.update({ role: "TEACHER" }, { where: { id: uid } }).then((res) => { return res })
+    let affectedRows = await User.update({ role: 'TEACHER' }, { where: { id: uid } }).then((res) => { return res })
 
     return res.status(200).json({
         success: true,

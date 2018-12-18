@@ -12,7 +12,7 @@ const AuthService = function (req, res, next) {
                 return res.status(200).json({ success: false, message: 'Failed_to_authenticate_token' });
             } else {
                await res.setHeader('Set-Cookie', cookie.serialize('uid', String(decoded.user_id), {
-                    httpOnly: true,
+                    httpOnly: false,
                     maxAge: 60 * 60 * 24 * 7 // 1 week
                   }))
                 next()
