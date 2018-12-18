@@ -8,9 +8,10 @@ const { User } = require('./../../models')
 
 const UpgradePermission = async function (req, res) {
 
-    userService = new UserService()
+ 
 
-    let uid = userService.getUid(req);
+    let uid = req.user_id 
+
 
     let affectedRows = await User.update({ role: 'TEACHER' }, { where: { id: uid } }).then((res) => { return res })
 

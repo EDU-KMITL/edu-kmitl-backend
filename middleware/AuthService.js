@@ -15,6 +15,7 @@ const AuthService = function (req, res, next) {
                     httpOnly: false,
                     maxAge: 60 * 60 * 24 * 7 // 1 week
                   }))
+                req.user_id = decoded.user_id
                 next()
             }
         })
