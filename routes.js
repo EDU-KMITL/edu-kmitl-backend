@@ -10,6 +10,8 @@ const GuestMeetup =  require('./controllers/guestmeetup.controller')
 const Search =  require('./controllers/search.controller')
 const ViewCoures =  require('./controllers/viewcoures.controller')
 
+const AuthService =  require('./middleware/AuthService')
+
 /* GET home page. */
 //router.get('/', Main);
 router.post('/register', Register);
@@ -21,6 +23,10 @@ router.get('/coures', GuestCourse);
 router.get('/meetup', GuestMeetup);
 router.get('/coures/:uuid', ViewCoures);
 
+//Auth
+
+router.use('/user', AuthService);
+router.get('/user/coures', GuestCourse);
 
 //Debug
 const Debug =  require('./controllers/debug.controller')
