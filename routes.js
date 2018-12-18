@@ -22,7 +22,6 @@ const UserMeetup =  require('./controllers/user/meetup.controller')
 router.post('/register', Register);
 router.post('/login', Login);
 router.post('/search', Search);
-router.post('/users/:action', Users);
 
 router.get('/coures', GuestCourse);
 router.get('/meetup', GuestMeetup);
