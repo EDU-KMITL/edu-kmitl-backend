@@ -2,7 +2,7 @@
  * Created by MisterNT on 5/1/2017.
  */
 const cookie = require('cookie');
-const { Course } = require('./../../models')
+const { Course } = require('./../../../models')
 
 const DeleteUserTearcherCourse = async function (req, res) {
 

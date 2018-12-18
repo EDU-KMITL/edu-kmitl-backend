@@ -3,7 +3,7 @@
  */
 const cookie = require('cookie');
 const Validator = require('validatorjs');
-const { Course } = require('./../../models')
+const { Course } = require('./../../../models')
 const RegisterUserCourse = async function (req, res) {
 
     let cookies = cookie.parse(req.headers.cookie || '');

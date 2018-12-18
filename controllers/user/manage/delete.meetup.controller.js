@@ -2,7 +2,7 @@
  * Created by MisterNT on 5/1/2017.
  */
 const cookie = require('cookie');
-const { Meetup } = require('./../../models')
+const { Meetup } = require('./../../../models')
 
 const DeleteUserTearcherMeetup = async function (req, res) {
 

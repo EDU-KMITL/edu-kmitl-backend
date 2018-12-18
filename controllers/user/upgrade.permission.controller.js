@@ -3,7 +3,7 @@
  */
 
 const cookie = require('cookie');
-const { User } = require('./../models')
+const { User } = require('./../../models')
 
 
 const UpgradePermission = async function (req, res) {

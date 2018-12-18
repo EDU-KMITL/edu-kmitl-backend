@@ -2,7 +2,7 @@
  * Created by MisterNT on 5/1/2017.
  */
 const cookie = require('cookie');
-const { CourseList } = require('./../../models')
+const { CourseList } = require('./../../../models')
 
 const UserTearcherCourse = async function (req, res) {
 
