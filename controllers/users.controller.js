@@ -3,11 +3,8 @@
  */
 
 const Validator = require('validatorjs');
-const { User } = require('./../models')
 const { Course } = require('./../models')
 const { Meetup } = require('./../models')
-const { CourseList } = require('./../models')
-const { MeetupList } = require('./../models')
 const JWT = require('jsonwebtoken')
 const ignoreCase = require('ignore-case')
 const env = process.env.NODE_ENV || 'development';
@@ -51,20 +48,6 @@ const Users = function (req, res) {
                             res.status(200).json(validation.errors);
                         });
                         break;
-                    case "course-get":
-                        Course.findAll({
-                            where: {
-                                user_id: decoded.user_id,
-                                status: "PUBLIC"
-                            }
-                        })
-                            .then(function (result) {
-                                res.status(200).json({
-                                    success: true,
-                                    data: result
-                                });
-                            })
-                        break;
                     case "meetup-creact":
                         let rules_mt = {
                             name: 'required',
@@ -97,103 +80,6 @@ const Users = function (req, res) {
                        // validation_mt.fails(function () {
                        //    return res.send(validation_mt.errors);
                        // });
-                        break;
-                    case "meetup-get":
-                        Meetup.findAll({
-                            where: {
-                                user_id: decoded.user_id
-                            }
-                        })
-                            .then(function (result) {
-                                res.status(200).json({
-                                    success: true,
-                                    data: result
-                                });
-                            })
-                        break;
-                    case "add-permission":
-                        User.update(
-                            { role: "TEACHER" } /* set attributes' value */,
-                            { where: { user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
-                                res.status(200).json({
-                                    success: true,
-                                    data: affectedRows,
-                                    message: 'ยืนยันสิทธิ์เรียบร้อย'
-                                });
-                            })
-                        break;
-                    case "course-regis":
-                        CourseList.create({
-                            user_id: decoded.user_id,
-                            uuid: req.body.uuid
-                        }).then(function (succcess) {
-                            res.status(200).json({
-                                success: true,
-                                data: succcess,
-                                message: "เข้าเรียนเรียบร้อยแล้ว"
-                            });
-                        })
-                        break;
-                    case "course-del":
-                        Course.update(
-                            { status: "DELETE" } /* set attributes' value */,
-                            { where: { uuid: req.body.uuid, user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
-                                res.status(200).json({
-                                    success: true,
-                                    data: affectedRows,
-                                    message: "ลบเรียบร้อยแล้ว"
-                                });
-
-                            })
-                        break;
-                    case "meetup-regis":
-                        MeetupList.create({
-                            user_id: decoded.user_id,
-                            uuid: req.body.uuid
-                        }).then(function (succcess) {
-                           return res.status(200).json({
-                                success: true,
-                                data: succcess,
-                                message: "เข้าร่วมแล้ว"
-                            });
-                        })
-                        break;
-                    case "mycourse-del":
-                        CourseList.destroy(
-                            { where: { uuid: req.body.uuid, user_id: decoded.user_id } } /* where criteria */).then(function (affectedRows) {
-                                res.status(200).json({
-                                    success: true,
-                                    data: affectedRows,
-                                    message: "ลบเรียบร้อยแล้ว"
-                                });
-
-                            })
-                        break;
-                    case "mycourse-get":
-                        CourseList.findAll({
-                            where: {
-                                user_id: decoded.user_id
-                            }
-                        })
-                            .then(function (result) {
-                                res.status(200).json({
-                                    success: true,
-                                    data: result
-                                });
-                            })
-                        break;
-                    case "mymeetup-get":
-                        MeetupList.findAll({
-                            where: {
-                                user_id: decoded.user_id
-                            }
-                        })
-                            .then(function (result) {
-                                res.status(200).json({
-                                    success: true,
-                                    data: result
-                                });
-                            }) 
                         break;
                     default:
                         res.status(200).json({ success: false, message: '404_NOT_FOUND' });

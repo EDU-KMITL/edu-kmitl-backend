@@ -4,7 +4,7 @@
 const cookie = require('cookie');
 const { CourseList } = require('./../../models')
 
-const UserCourse = async function (req, res) {
+const UserTearcherCourse = async function (req, res) {
 
     let cookies = cookie.parse(req.headers.cookie || '');
 
@@ -18,4 +18,4 @@ const UserCourse = async function (req, res) {
         data: CourseLists
     });
 }
-module.exports = UserCourse;
+module.exports = UserTearcherCourse;

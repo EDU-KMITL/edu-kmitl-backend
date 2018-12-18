@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //debug
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //route
 app.use('/apis/', routes);
@@ -35,6 +35,6 @@ if (app.get('env') === 'development') {
 app.use((err, req, res, next) => {
    return res.status(500).json({  message: err.message , error: err});
 });
-
+    
 
 module.exports = app;
