@@ -2,7 +2,7 @@ const UserService = require('./UserService')
 const { User } = require('./../models')
 
 
-const ManageService = async function (req, res) {
+const ManageService = async function (req, res,next) {
 
     userService = new UserService()
 
