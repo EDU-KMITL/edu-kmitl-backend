@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Meetup.associate = function(models) {
-    // associations can be defined here
+    Meetup.belongsTo(models.MeetupList, { foreignKey: 'uuid', targetKey: 'uuid' });
   };
   return Meetup;
 };
