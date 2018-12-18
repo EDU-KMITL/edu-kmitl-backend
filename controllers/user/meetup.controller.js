@@ -9,7 +9,7 @@ const UserMeetup = async function (req, res) {
     userService = new UserService()
 
     let uid = userService.getUid(req);
-    let MeetupLists = await MeetupList.findAll({ where: { user_id: uid ,status:"PUBLIC"} , include: [Meetup]}).then((res) => { return res })
+    let MeetupLists = await MeetupList.findAll({ where: { user_id: uid } , include: [Meetup]}).then((res) => { return res })
 
     return res.status(200).json({
         success: true,
