@@ -6,7 +6,7 @@ const ManageService = async function (req, res) {
 
     userService = new UserService()
 
-    let uid = userService.getUid();
+    let uid = userService.getUid(req);
 
     let affectedRows = await User.findOne( { where: { id: uid } }).then((res) => { return res })
     if(affectedRows.role == "TEACHER"){
