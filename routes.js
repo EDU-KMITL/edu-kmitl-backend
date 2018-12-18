@@ -23,6 +23,7 @@ const UserMeetup =  require('./controllers/user/meetup.controller')
 const RegisterUserCourse =  require('./controllers/user/register.coures.controller')
 const RegisterUserMeetup =  require('./controllers/user/register.meetup.controller')
 const DeleteUserCourse =  require('./controllers/user/delete.coures.controller')
+const DeleteUserMeetup =  require('./controllers/user/delete.meetup.controller')
 const UpgradePermission =  require('./controllers/user/upgrade.permission.controller')
 
 //ManageController
@@ -58,7 +59,7 @@ router.get('/user/meetup', UserMeetup);
 router.get('/user/coures/register/:uuid', RegisterUserCourse);
 router.get('/user/meetup/register/:uuid', RegisterUserMeetup);
 router.get('/user/coures/delete/:uuid', DeleteUserCourse);
-router.get('/user/meetup/delete/:uuid', UserMeetup);
+router.get('/user/meetup/delete/:uuid', DeleteUserMeetup);
 
 router.get('/user/upgrade', UpgradePermission);
 

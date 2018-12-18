@@ -4,7 +4,7 @@
 const UserService = require('./../../middleware/UserService')
 const { MeetupList } = require('./../../models')
 
-const DeleteMeetupCourse = async function (req, res) {
+const DeleteUserMeetup = async function (req, res) {
 
     userService = new UserService()
 
@@ -17,4 +17,4 @@ const DeleteMeetupCourse = async function (req, res) {
         message: "ลบเรียบร้อยแล้ว"
     });
 }
-module.exports = DeleteMeetupCourse;
+module.exports = DeleteUserMeetup;
