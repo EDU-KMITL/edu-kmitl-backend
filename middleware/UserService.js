@@ -1,8 +1,7 @@
-const cookie = require('cookie');
+
 class UserService {
     getUid(req){
-        let cookies = cookie.parse(req.headers.cookie || '');
-        let uid = cookies.uid;
+        let uid = req.user_id 
         return uid
     }
 }

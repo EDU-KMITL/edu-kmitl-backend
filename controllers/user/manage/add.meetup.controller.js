@@ -1,15 +1,14 @@
 /**
  * Created by MisterNT on 5/1/2017.
  */
-const cookie = require('cookie');
+const UserService = require('./../../../middleware/UserService')
 const Validator = require('validatorjs');
 const { Meetup } = require('./../../../models')
 const AddMeetup = async function (req, res) {
+   
+    userService = new UserService()
 
-    let cookies = cookie.parse(req.headers.cookie || '');
-
-    // Get the visitor name set in the cookie
-    let uid = cookies.uid;
+    let uid = userService.getUid(req);
 
     let rules = {
         name: 'required',

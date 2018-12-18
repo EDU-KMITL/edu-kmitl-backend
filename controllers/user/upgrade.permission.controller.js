@@ -2,7 +2,6 @@
  * Created by MisterNT on 5/1/2017.
  */
 const UserService = require('./../../middleware/UserService')
-const cookie = require('cookie');
 const { User } = require('./../../models')
 
 
