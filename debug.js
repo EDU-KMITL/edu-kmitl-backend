@@ -1,17 +1,13 @@
-const MailService = require('./services/MailService')
-const Validator = require('validatorjs');
+const UserService = require('./middleware/UserService')
+const { User } = require('./models')
 
 class Debug {
     async start() {
-        let rules = {
-            name: 'required'
-        };
-        let parameter = {
-            //name:'wandee'
-        }
-        let validation = new Validator(parameter, rules);
-        console.log(validation.passes())
-        console.log(validation.fails())
+        let uid =  "1"//new UserService().getUid();
+
+        let affectedRows = await User.findOne( { where: { id: uid } }).then((res) => { return res })
+
+        console.log(affectedRows.role)
         //MailService("59050300@kmitl.ac.th","http://edu.kmitl.ac.th")
     }
 }

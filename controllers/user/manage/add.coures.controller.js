@@ -4,7 +4,7 @@
 const cookie = require('cookie');
 const Validator = require('validatorjs');
 const { Course } = require('./../../../models')
-const RegisterUserCourse = async function (req, res) {
+const AddCourse = async function (req, res) {
 
     let cookies = cookie.parse(req.headers.cookie || '');
 
@@ -18,7 +18,7 @@ const RegisterUserCourse = async function (req, res) {
     };
 
     let validation = new Validator(req.body, rules);
-    if(validation.passes()){
+    if (validation.passes()) {
 
         let resData = await Course.create({
             user_id: uid,
@@ -31,11 +31,11 @@ const RegisterUserCourse = async function (req, res) {
             data: resData,
             message: "เพิ่มวิชาเรียนรียบร้อยแล้ว"
         });
-    }else{
+    } else {
         return res.status(200).json({
             success: false,
             message: "กรอกข้อมูลไม่ครบถ้วน"
         });
     }
 }
-module.exports = RegisterUserCourse;
+module.exports = AddCourse;

@@ -4,7 +4,7 @@
 const cookie = require('cookie');
 const Validator = require('validatorjs');
 const { Meetup } = require('./../../../models')
-const RegisterUserMeetup = async function (req, res) {
+const AddMeetup = async function (req, res) {
 
     let cookies = cookie.parse(req.headers.cookie || '');
 
@@ -44,4 +44,4 @@ const RegisterUserMeetup = async function (req, res) {
         });
     }
 }
-module.exports = RegisterUserMeetup;
+module.exports = AddMeetup;
