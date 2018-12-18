@@ -13,7 +13,7 @@ const UpgradePermission = async function (req, res) {
     // Get the visitor name set in the cookie
     let uid = cookies.uid;
 
-    let affectedRows = await User.update({ role: "TEACHER" }, { where: { user_id: uid } }).then.then((res) => { return res })
+    let affectedRows = await User.update({ role: "TEACHER" }, { where: { id: uid } }).then((res) => { return res })
 
     return res.status(200).json({
         success: true,
