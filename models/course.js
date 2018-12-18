@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Course.associate = function (models) {
     Course.hasMany(models.User, { foreignKey: 'id', targetKey: 'user_id' });
+    Course.belongsTo(models.CourseList, { foreignKey: 'uuid', targetKey: 'uuid' });
   };
   return Course;
 };
