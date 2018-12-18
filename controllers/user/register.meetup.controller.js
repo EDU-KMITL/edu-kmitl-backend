@@ -10,7 +10,7 @@ const RegisterUserMeetup = async function (req, res) {
 
     // Get the visitor name set in the cookie
     let uid = cookies.uid;
-    let resData = await MeetupList.create({ user_id: uid, uuid: req.body.uuid }).then((res) => { return res })
+    let resData = await MeetupList.create({ user_id: uid, uuid: req.params.uuid }).then((res) => { return res })
 
     return res.status(200).json({
         success: true,

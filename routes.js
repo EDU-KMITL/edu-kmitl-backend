@@ -16,7 +16,10 @@ const AuthService =  require('./middleware/AuthService')
 //User
 const UserCourse =  require('./controllers/user/coures.controller')
 const UserMeetup =  require('./controllers/user/meetup.controller')
-
+const RegisterUserCourse =  require('./controllers/user/register.coures.controller')
+const RegisterUserMeetup =  require('./controllers/user/register.meetup.controller')
+const DeleteUserCourse =  require('./controllers/user/delete.coures.controller')
+const UpgradePermission =  require('./controllers/user/upgrade.permission.controller')
 
 // Router
 router.post('/register', Register);
@@ -32,6 +35,12 @@ router.get('/meetup/:uuid', ViewMeetup);
 router.use('/user', AuthService);
 router.get('/user/coures', UserCourse);
 router.get('/user/meetup', UserMeetup);
+router.get('/user/coures/register/:uuid', RegisterUserCourse);
+router.get('/user/meetup/register/:uuid', RegisterUserMeetup);
+router.get('/user/coures/delete/:uuid', DeleteUserCourse);
+router.get('/user/meetup/delete/:uuid', UserMeetup);
+
+router.get('/user/upgrade', UpgradePermission);
 
 
 
