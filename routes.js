@@ -8,7 +8,7 @@ const Users =  require('./controllers/users.controller')
 const GuestCourse =  require('./controllers/guestcoures.controller')
 const GuestMeetup =  require('./controllers/guestmeetup.controller')
 const Search =  require('./controllers/search.controller')
-
+const ViewCoures =  require('./controllers/viewcoures.controller')
 
 /* GET home page. */
 //router.get('/', Main);
@@ -19,7 +19,7 @@ router.post('/users/:action', Users);
 
 router.get('/coures', GuestCourse);
 router.get('/meetup', GuestMeetup);
-
+router.get('/coures/:uuid', ViewCoures);
 
 
 //Debug
