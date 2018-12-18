@@ -30,11 +30,13 @@ const UserTearcherCourse =  require('./controllers/user/manage/coures.controller
 const UserTearcherMeetup =  require('./controllers/user/manage/meetup.controller')
 const AddCourse =  require('./controllers/user/manage/add.coures.controller')
 const AddMeetup =  require('./controllers/user/manage/add.meetup.controller')
+const AddVideo =  require('./controllers/user/manage/add.video.controller')
 const EditCourse =  require('./controllers/user/manage/edit.coures.controller')
 const EditMeetup =  require('./controllers/user/manage/edit.meetup.controller')
+const EditVideo =  require('./controllers/user/manage/edit.video.controller')
 const DeleteUserTearcherCourse =  require('./controllers/user/manage/delete.coures.controller')
 const DeleteUserTearcherMeetup =  require('./controllers/user/manage/delete.meetup.controller')
-
+const DeleteVideo =  require('./controllers/user/manage/delete.video.controller')
 // Router
 router.post('/register', Register);
 router.post('/login', Login);
@@ -66,10 +68,13 @@ router.get('/user/manage/coures', UserTearcherCourse);
 router.get('/user/manage/meetup', UserTearcherMeetup);
 router.post('/user/manage/coures/add', AddCourse);
 router.post('/user/manage/meetup/add', AddMeetup);
+router.post('/user/manage/video/add', AddVideo);
 router.post('/user/manage/coures/edit', EditCourse);
 router.post('/user/manage/meetup/edit', EditMeetup);
-router.get('/user/manage/coures/delete', DeleteUserTearcherCourse);
-router.get('/user/manage/meetup/delete', DeleteUserTearcherMeetup);
+router.post('/user/manage/video/edit', EditVideo);
+router.post('/user/manage/coures/delete', DeleteUserTearcherCourse);
+router.post('/user/manage/meetup/delete', DeleteUserTearcherMeetup);
+router.post('/user/manage/video/delete', DeleteVideo);
 
 
 module.exports = router;

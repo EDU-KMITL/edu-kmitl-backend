@@ -20,7 +20,7 @@ const EditCourse = async function (req, res) {
 
         let resData = await Course.update({
             name: req.body.name,
-            detail: req.body.name,
+            detail: req.body.detail,
             picture: req.body.picture
         }, { where: { user_id: uid } }).then((res) => { return res })
         return res.status(200).json({

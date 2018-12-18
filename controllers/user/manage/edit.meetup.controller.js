@@ -24,7 +24,7 @@ const EditMeetup = async function (req, res) {
 
         let resData = await Meetup.update({
             name: req.body.name,
-            detail: req.body.name,
+            detail: req.body.detail,
             picture: req.body.picture,
             mt_date: req.body.mt_date,
             mt_time: req.body.mt_time,

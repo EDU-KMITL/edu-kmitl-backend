@@ -2,7 +2,6 @@
  * Created by MisterNT on 5/1/2017.
  */
 
-const cookie = require('cookie');
 const { User } = require('./../models')
 const JWT = require('jsonwebtoken')
 const env = process.env.NODE_ENV || 'development';
@@ -14,7 +13,7 @@ const ActivateUser =  function (req, res) {
         if (err) {
             return res.status(200).json({ success: false, message: 'ไม่สามารถยืนยันอีเมล์ได้' });
         } else {
-            let affectedRows = await User.update({ status: "ACTIVATE" }, { where: { user_id: decoded.user_id } }).then.then((res) => { return res })
+            let affectedRows = await User.update({ status: "ACTIVATE" }, { where: { id: decoded.user_id } }).then.then((res) => { return res })
 
             return res.status(200).json({
                 success: true,

@@ -1,35 +1,32 @@
 /**
  * Created by MisterNT on 5/1/2017.
  */
-const cookie = require('cookie');
+const UserService = require('./../../../middleware/UserService')
 const Validator = require('validatorjs');
-const { Course } = require('./../../../models')
-const AddCourse = async function (req, res) {
+const { VideoList } = require('./../../../models')
+const EditVideo = async function (req, res) {
+    userService = new UserService()
 
-    let cookies = cookie.parse(req.headers.cookie || '');
-
-    // Get the visitor name set in the cookie
-    let uid = cookies.uid;
+    let uid = userService.getUid(req);
 
     let rules = {
         name: 'required',
         detail: 'required',
-        picture: 'required|url'
+        link: 'required|url'
     };
 
     let validation = new Validator(req.body, rules);
     if (validation.passes()) {
 
-        let resData = await Course.create({
-            user_id: uid,
+        let resData = await VideoList.update({
             name: req.body.name,
             detail: req.body.detail,
-            picture: req.body.picture
-        }).then((res) => { return res })
+            link: req.body.link
+        }, { where: { uuid: req.body.name.uuid , user_id: uid} }).then((res) => { return res })
         return res.status(200).json({
             success: true,
             data: resData,
-            message: "เพิ่มวิชาเรียนรียบร้อยแล้ว"
+            message: "แก้ไขวิดิโอเรียบร้อยแล้ว"
         });
     } else {
         return res.status(200).json({
@@ -38,4 +35,4 @@ const AddCourse = async function (req, res) {
         });
     }
 }
-module.exports = AddCourse;
+module.exports = EditVideo;

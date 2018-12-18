@@ -1,35 +1,36 @@
 /**
  * Created by MisterNT on 5/1/2017.
  */
-const cookie = require('cookie');
+const UserService = require('./../../../middleware/UserService')
 const Validator = require('validatorjs');
-const { Course } = require('./../../../models')
-const AddCourse = async function (req, res) {
+const { VideoList } = require('./../../../models')
+const AddVideo = async function (req, res) {
 
-    let cookies = cookie.parse(req.headers.cookie || '');
+    userService = new UserService()
 
-    // Get the visitor name set in the cookie
-    let uid = cookies.uid;
+    let uid = userService.getUid(req);
 
     let rules = {
+        uuid: 'required',
         name: 'required',
         detail: 'required',
-        picture: 'required|url'
+        link: 'required|url'
     };
 
     let validation = new Validator(req.body, rules);
     if (validation.passes()) {
 
-        let resData = await Course.create({
+        let resData = await VideoList.create({
+            uuid: req.body.uuid,
             user_id: uid,
             name: req.body.name,
             detail: req.body.detail,
-            picture: req.body.picture
+            link: req.body.link
         }).then((res) => { return res })
         return res.status(200).json({
             success: true,
             data: resData,
-            message: "เพิ่มวิชาเรียนรียบร้อยแล้ว"
+            message: "เพิ่มวิดิโอเรียบร้อยแล้ว"
         });
     } else {
         return res.status(200).json({
@@ -38,4 +39,4 @@ const AddCourse = async function (req, res) {
         });
     }
 }
-module.exports = AddCourse;
+module.exports = AddVideo
