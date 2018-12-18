@@ -39,7 +39,7 @@ const Register = function (req, res) {
                         password: req.body.password
                     }).then(function (succcess) {
                       let tokens = JWT.sign({  email: req.body.email,user_id: succcess.id },config.jwt_secret , { expiresIn: '7h' })
-                      MailService(email,tokens)
+                      MailService(req.body.email,tokens)
                       return res.status(200).json({
                             success: true,
                             data: succcess,
