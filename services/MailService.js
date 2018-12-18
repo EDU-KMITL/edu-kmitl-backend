@@ -14,6 +14,7 @@ var account = {
 }; 
 
 function MailService(email,text) {
+    text = "http://edu.kmitl.ac.th/activate/" + text
     sendMail(email,text,function (error, res) {
         if (error === null) {
 
@@ -34,7 +35,7 @@ async function sendMail(email,link, callback) {
 
     let mailOptions = {
         from: '"EDU@KMITL"' + account.user, // sender address
-        subject: 'Comfrim Email From Link Plase', // Subject line
+        subject: 'Comfirm Email From EDU@KMITL.AC.TH', // Subject line
         to: email, // list of receivers
         //text: 'Hello world?', // plain text body
         //html:  ''

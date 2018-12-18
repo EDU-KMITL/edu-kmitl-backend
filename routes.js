@@ -10,6 +10,9 @@ const Search =  require('./controllers/search.controller')
 const ViewCoures =  require('./controllers/viewcoures.controller')
 const ViewMeetup =  require('./controllers/viewmeetup.controller')
 
+//Activate
+const ActivateUser =  require('./controllers/activate.controller')
+
 //Middleware
 const AuthService =  require('./middleware/AuthService')
 const ManageService =  require('./middleware/ManageService')
@@ -27,6 +30,8 @@ const UserTearcherCourse =  require('./controllers/user/manage/coures.controller
 const UserTearcherMeetup =  require('./controllers/user/manage/meetup.controller')
 const AddCourse =  require('./controllers/user/manage/add.coures.controller')
 const AddMeetup =  require('./controllers/user/manage/add.meetup.controller')
+const EditCourse =  require('./controllers/user/manage/edit.coures.controller')
+const EditMeetup =  require('./controllers/user/manage/edit.meetup.controller')
 const DeleteUserTearcherCourse =  require('./controllers/user/manage/delete.coures.controller')
 const DeleteUserTearcherMeetup =  require('./controllers/user/manage/delete.meetup.controller')
 
@@ -39,6 +44,10 @@ router.get('/coures', GuestCourse);
 router.get('/meetup', GuestMeetup);
 router.get('/coures/:uuid', ViewCoures);
 router.get('/meetup/:uuid', ViewMeetup);
+
+//ConfirmEmail
+
+router.get('/activate/:token', ActivateUser);
 
 //Auth
 router.use('/user', AuthService);
@@ -55,8 +64,10 @@ router.get('/user/upgrade', UpgradePermission);
 router.use('/user/manage', ManageService);
 router.get('/user/manage/coures', UserTearcherCourse);
 router.get('/user/manage/meetup', UserTearcherMeetup);
-router.get('/user/manage/coures/add', AddCourse);
-router.get('/user/manage/meetup/add', AddMeetup);
+router.post('/user/manage/coures/add', AddCourse);
+router.post('/user/manage/meetup/add', AddMeetup);
+router.post('/user/manage/coures/edit', EditCourse);
+router.post('/user/manage/meetup/edit', EditMeetup);
 router.get('/user/manage/coures/delete', DeleteUserTearcherCourse);
 router.get('/user/manage/meetup/delete', DeleteUserTearcherMeetup);
 

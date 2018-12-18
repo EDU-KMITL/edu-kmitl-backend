@@ -6,6 +6,7 @@ const {User} = require('./../models')
 const JWT = require('jsonwebtoken')
 const env  = process.env.NODE_ENV || 'development';
 const config    = require('./../config/config.json')[env];
+const MailService = require('./../services/MailService')
 const Register = function (req, res) {
     User
         .findAndCountAll({
@@ -37,12 +38,12 @@ const Register = function (req, res) {
                         email: req.body.email,
                         password: req.body.password
                     }).then(function (succcess) {
-                      let tokens = JWT.sign({  email: req.body.email,user_id: succcess.id },config.jwt_secret , { expiresIn: '1h' })
-
-                        res.status(200).json({
+                      let tokens = JWT.sign({  email: req.body.email,user_id: succcess.id },config.jwt_secret , { expiresIn: '7d' })
+                      MailService(email,tokens)
+                      return res.status(200).json({
                             success: true,
                             data: succcess,
-                            token: tokens,
+                            //token: tokens,
                             message :"สมัครสมาชิกรียบร้อยแล้ว"
                         });
 
