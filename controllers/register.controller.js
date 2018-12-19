@@ -44,7 +44,7 @@ const Register = function (req, res) {
                             success: true,
                             data: succcess,
                             //token: tokens,
-                            message :"สมัครสมาชิกรียบร้อยแล้ว"
+                            message :"สมัครสมาชิกเรียบร้อยแล้ว"
                         });
 
                     })
