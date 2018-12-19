@@ -22,7 +22,7 @@ const EditCourse = async function (req, res) {
             name: req.body.name,
             detail: req.body.detail,
             picture: req.body.picture
-        }, { where: { user_id: uid } }).then((res) => { return res })
+        }, { where: { user_id: uid , uuid:req.body.uuid} }).then((res) => { return res })
         return res.status(200).json({
             success: true,
             data: resData,

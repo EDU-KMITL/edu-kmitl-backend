@@ -29,7 +29,7 @@ const EditMeetup = async function (req, res) {
             mt_date: req.body.mt_date,
             mt_time: req.body.mt_time,
             location: req.body.location
-        }, { where: { user_id: uid } }).then((res) => { return res })
+        }, { where: { user_id: uid , uuid:req.body.uuid  } }).then((res) => { return res })
         return res.status(200).json({
             success: true,
             data: resData,

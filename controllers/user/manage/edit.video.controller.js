@@ -22,7 +22,7 @@ const EditVideo = async function (req, res) {
             name: req.body.name,
             detail: req.body.detail,
             link: req.body.link
-        }, { where: { uuid: req.body.name.uuid , user_id: uid} }).then((res) => { return res })
+        }, { where: { uuid: req.body.uuid , user_id: uid} }).then((res) => { return res })
         return res.status(200).json({
             success: true,
             data: resData,
