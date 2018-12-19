@@ -29,7 +29,7 @@ const AddVideo = async function (req, res) {
             link: req.body.link
         }).then((res) => { return res })
 
-        new AdminService().CreactContent(resData.id,link)
+        new AdminService().CreactContent(resData.id,req.body.link)
 
         return res.status(200).json({
             success: true,
