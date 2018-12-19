@@ -17,7 +17,7 @@ const UpgradePermission = async function (req, res) {
     return res.status(200).json({
         success: true,
         data: affectedRows,
-        message: 'ยืนยันสิทธิ์เรียบร้อย'
+        message: 'ยืนยันสิทธิเรียบร้อย'
     });
 }
 module.exports = UpgradePermission;
