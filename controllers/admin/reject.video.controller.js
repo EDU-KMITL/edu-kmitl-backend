@@ -7,7 +7,7 @@ const { VideoList } = require('./../../models')
 const RejectVideo = async function (req, res) {
  
 
-    let vid = req.video_id 
+    let vid = req.vdieo_id 
 
     let affectedRows = await VideoList.update({ status: 'PRIVATE' }, { where: { id: vid } }).then((res) => { return res })
 

@@ -10,7 +10,9 @@ const DeleteVideo = async function (req, res) {
 
     let uid = userService.getUid(req);
     
-    let resData = await VideoList.update({ status: "DELETE" }, { where: { uuid: req.body.uuid, user_id: uid } }).then((res) => { return res })
+
+
+    let resData = await VideoList.update({ status: "DELETE" }, { where: { id:req.body.vid, user_id: uid } }).then((res) => { return res })
 
     return res.status(200).json({
         success: true,

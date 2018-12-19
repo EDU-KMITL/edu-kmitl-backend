@@ -1,7 +1,7 @@
 /**
  * Created by MisterNT on 5/1/2017.
  */
-const {VideoList} = require('./../models')
+const {VideoList} = require('./../../../models')
 const UserService = require('./../../../middleware/UserService')
 const TeacherViewVideo = async function (req, res) {
     userService = new UserService()

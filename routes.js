@@ -18,6 +18,7 @@ const ActivateUser =  require('./controllers/activate.controller')
 //Middleware
 const AuthService =  require('./middleware/AuthService')
 const ManageService =  require('./middleware/ManageService')
+const AdminService =  require('./middleware/AdminService')
 
 //UserController
 const UserCourse =  require('./controllers/user/coures.controller')
@@ -41,6 +42,12 @@ const EditVideo =  require('./controllers/user/manage/edit.video.controller')
 const DeleteUserTearcherCourse =  require('./controllers/user/manage/delete.coures.controller')
 const DeleteUserTearcherMeetup =  require('./controllers/user/manage/delete.meetup.controller')
 const DeleteVideo =  require('./controllers/user/manage/delete.video.controller')
+
+
+//AdminController
+const ApproveVideo =  require('./controllers/admin/approve.video.controller')
+const RejectVideo =  require('./controllers/admin/reject.video.controller')
+
 // Router
 router.post('/register', Register);
 router.post('/login', Login);
@@ -82,6 +89,9 @@ router.post('/user/manage/coures/delete', DeleteUserTearcherCourse);
 router.post('/user/manage/meetup/delete', DeleteUserTearcherMeetup);
 router.post('/user/manage/video/delete', DeleteVideo);
 
-
+//Admin
+router.use('/admin/:token', AdminService);
+router.use('/admin/approve', ApproveVideo);
+router.use('/admin/reject', RejectVideo);
 
 module.exports = router;

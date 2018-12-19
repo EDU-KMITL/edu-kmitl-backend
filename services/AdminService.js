@@ -13,10 +13,10 @@ class AdminService {
                 console.log(response.body);
             })
         }
-        CreactContent(uuid,link){
-            let tokens = JWT.sign({  uuid: uuid },config.jwt_secret , { expiresIn: '7h' })
+        CreactContent(id,link){
+            let tokens = JWT.sign({  id: id },config.jwt_secret , { expiresIn: '7h' })
                     
-            let webLink =  "http://edu.kmitl.ac.th"
+            let webLink =  "http://edu.kmitl.ac.th/admin"
             let LinkApprove =webLink + "/approve/" + tokens
             let LinkReject = webLink + "/reject/"  + tokens
 
