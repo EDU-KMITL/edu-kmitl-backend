@@ -91,7 +91,7 @@ router.post('/user/manage/video/delete', DeleteVideo);
 
 //Admin
 router.use('/admin/:token', AdminService);
-router.use('/admin/approve', ApproveVideo);
-router.use('/admin/reject', RejectVideo);
+router.get('/admin/:token/approve', ApproveVideo);
+router.get('/admin/:token/reject', RejectVideo);
 
 module.exports = router;
