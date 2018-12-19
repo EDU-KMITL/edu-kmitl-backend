@@ -14,7 +14,6 @@ const RegisterUserMeetup = async function (req, res) {
     if(count > 0){
         return res.status(200).json({
             success: false,
-            data: resData,
             message: "ท่านได้กิจกรรมนี้ไปแล้ว"
         });
     }else{
