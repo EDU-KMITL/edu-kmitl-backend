@@ -14,7 +14,8 @@ var account = {
 }; 
 
 function MailService(email,text) {
-    text = "http://edu.kmitl.ac.th/activate/" + text
+    text = "https://edu-kmitl-backend.herokuapp.com/apis/activate/" + text
+    //text = "http://edu.kmitl.ac.th/activate/" + text
     sendMail(email,text,function (error, res) {
         if (error === null) {
 

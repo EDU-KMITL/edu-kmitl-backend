@@ -14,12 +14,12 @@ const ActivateUser =  function (req, res) {
             return res.status(200).json({ success: false, message: 'ไม่สามารถยืนยันอีเมล์ได้' });
         } else {
             let affectedRows = await User.update({ status: "ACTIVATE" }, { where: { id: decoded.user_id } }).then((res) => { return res })
-
-            return res.status(200).json({
+            return res.status(301).redirect("http://edu.kmitl.ac.th/")
+           /* return res.status(200).json({
                 success: true,
                 data: affectedRows,
                 message: 'ยืนยันเมล์เรียบร้อยแล้ว'
-            });
+            });*/ 
         }
     })
 

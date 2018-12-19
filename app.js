@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const routes = require('./routes')
 const cors = require('cors')
 const Debug = require('./debug')
+const JSAlert = require("js-alert");
 //using let
 let app = express();
 app.use(cors())

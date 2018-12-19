@@ -16,9 +16,12 @@ class AdminService {
         CreactContent(id,link){
             let tokens = JWT.sign({  id: id },config.jwt_secret , { expiresIn: '7h' })
                     
-            let webLink =  "http://edu.kmitl.ac.th/admin"
-            let LinkApprove =webLink + "/approve/" + tokens
-            let LinkReject = webLink + "/reject/"  + tokens
+            let webLink =  "https://edu-kmitl-backend.herokuapp.com/apis/admin/"
+            let LinkApprove =webLink + tokens + "/approve/" 
+            let LinkReject = webLink + tokens + "/reject" 
+  
+          //  let LinkApprove =webLink + "/approve/" + tokens
+          //  let LinkReject = webLink + "/reject/"  + tokens
 
             let content = link + "\n ยอมรับ " + LinkApprove + "\n ยกเลิก " + LinkReject
             this.WebHooklineSend(content)
