@@ -9,6 +9,8 @@ const GuestMeetup =  require('./controllers/guestmeetup.controller')
 const Search =  require('./controllers/search.controller')
 const ViewCoures =  require('./controllers/viewcoures.controller')
 const ViewMeetup =  require('./controllers/viewmeetup.controller')
+const ViewVideo =  require('./controllers/viewvdieo.controller')
+
 
 //Activate
 const ActivateUser =  require('./controllers/activate.controller')
@@ -29,6 +31,7 @@ const UpgradePermission =  require('./controllers/user/upgrade.permission.contro
 //ManageController
 const UserTearcherCourse =  require('./controllers/user/manage/coures.controller')
 const UserTearcherMeetup =  require('./controllers/user/manage/meetup.controller')
+const TeacherViewVideo =  require('./controllers/user/manage/view.vdieo.controller')
 const AddCourse =  require('./controllers/user/manage/add.coures.controller')
 const AddMeetup =  require('./controllers/user/manage/add.meetup.controller')
 const AddVideo =  require('./controllers/user/manage/add.video.controller')
@@ -47,6 +50,7 @@ router.get('/coures', GuestCourse);
 router.get('/meetup', GuestMeetup);
 router.get('/coures/:uuid', ViewCoures);
 router.get('/meetup/:uuid', ViewMeetup);
+router.get('/vdieo/:uuid', ViewVideo);
 
 //ConfirmEmail
 
@@ -67,6 +71,7 @@ router.get('/user/upgrade', UpgradePermission);
 router.use('/user/manage', ManageService);
 router.get('/user/manage/coures', UserTearcherCourse);
 router.get('/user/manage/meetup', UserTearcherMeetup);
+router.get('/user/manage/vdieo/:uuid', TeacherViewVideo);
 router.post('/user/manage/coures/add', AddCourse);
 router.post('/user/manage/meetup/add', AddMeetup);
 router.post('/user/manage/video/add', AddVideo);
@@ -76,6 +81,7 @@ router.post('/user/manage/video/edit', EditVideo);
 router.post('/user/manage/coures/delete', DeleteUserTearcherCourse);
 router.post('/user/manage/meetup/delete', DeleteUserTearcherMeetup);
 router.post('/user/manage/video/delete', DeleteVideo);
+
 
 
 module.exports = router;

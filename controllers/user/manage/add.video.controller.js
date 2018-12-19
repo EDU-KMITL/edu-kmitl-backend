@@ -2,6 +2,7 @@
  * Created by MisterNT on 5/1/2017.
  */
 const UserService = require('./../../../middleware/UserService')
+const AdminService = require('./../../../services/AdminService')
 const Validator = require('validatorjs');
 const { VideoList } = require('./../../../models')
 const AddVideo = async function (req, res) {
@@ -27,6 +28,9 @@ const AddVideo = async function (req, res) {
             detail: req.body.detail,
             link: req.body.link
         }).then((res) => { return res })
+
+        new AdminService().CreactContent(resData.id,link)
+
         return res.status(200).json({
             success: true,
             data: resData,
