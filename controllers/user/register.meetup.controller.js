@@ -14,7 +14,7 @@ const RegisterUserMeetup = async function (req, res) {
     if(count > 0){
         return res.status(200).json({
             success: false,
-            message: "ท่านได้กิจกรรมนี้ไปแล้ว"
+            message: "ท่านได้เข้าร่วมกิจกรรมนี้ไปแล้ว"
         });
     }else{
         let resData = await MeetupList.create({ user_id: uid, uuid: req.params.uuid }).then((res) => { return res })
