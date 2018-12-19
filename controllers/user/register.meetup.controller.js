@@ -9,12 +9,22 @@ const RegisterUserMeetup = async function (req, res) {
     userService = new UserService()
 
     let uid = userService.getUid(req);
-    let resData = await MeetupList.create({ user_id: uid, uuid: req.params.uuid }).then((res) => { return res })
+    let count = MeetupList.count({ where: {uuid: req.params.uuid}} ).then(c => {  return c })
+    if(count > 0){
+        return res.status(200).json({
+            success: false,
+            data: resData,
+            message: "ท่านได้กิจกรรมนี้ไปแล้ว"
+        });
+    }else{
+        let resData = await MeetupList.create({ user_id: uid, uuid: req.params.uuid }).then((res) => { return res })
 
-    return res.status(200).json({
-        success: true,
-        data: resData,
-        message: "เพิ่มกิจกรรมเรียนรียบร้อยแล้ว"
-    });
+        return res.status(200).json({
+            success: true,
+            data: resData,
+            message: "เพิ่มกิจกรรมเรียนรียบร้อยแล้ว"
+        });
+    }
+
 }
 module.exports = RegisterUserMeetup;
