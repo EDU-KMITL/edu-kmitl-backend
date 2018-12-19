@@ -31,7 +31,7 @@ const Login = function (req, res) {
           email: req.body.email,
           user_id: resSQL.id
         }, config.jwt_secret, { expiresIn: '1h' })
-        if(resSQL.role != "TEACHER"){
+        if(resSQL.status == "NOT_ACTIVATE"){
          return res.status(200).json({
             success: false,
             message :"กรุณายืนยันอีเมล์"

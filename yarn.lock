@@ -60,6 +60,11 @@ ajv@^4.7.0:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
+alert-node@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/alert-node/-/alert-node-1.2.3.tgz#4227b631366f3c568545aaac6b0d6e60e38c9e9b"
+  integrity sha512-LMhS6UASD2ElwZPuGXk59LgMsPZQFnfYTaav7WtD6jg3Wefttb7Au6oeU5mj+jgfGwK6LH/KiATKTGgJZBHlWA==
+
 ansi-escapes@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
