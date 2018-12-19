@@ -8,7 +8,7 @@ const RegisterUserCourse = async function (req, res) {
 
     userService = new UserService()
 
-    let count = CourseList.count({ where: {uuid: req.params.uuid}} ).then(c => {  return c })
+    let count = await CourseList.count({ where: {uuid: req.params.uuid}} ).then(c => {  return c })
     if(count > 0){
         return res.status(200).json({
             success: false,
