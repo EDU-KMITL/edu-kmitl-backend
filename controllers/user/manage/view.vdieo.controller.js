@@ -8,6 +8,10 @@ const TeacherViewVideo = async function (req, res) {
 
     let uid = userService.getUid(req);
     let ViewVideos = await VideoList.findAll({ where: {uuid: req.params.uuid , user_id: uid ,status:['PUBLIC','Pending'] } }).then( (res) => { return res} )
+    Object.keys(ViewVideos).map(function (key, index) {
+        ViewVideos[key].link = ViewVideos[key].link.split("=")[1]
+        return ViewVideos
+    });
     res.status(200).json({
         success: true,
         data: ViewVideos
