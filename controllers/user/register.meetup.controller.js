@@ -9,7 +9,8 @@ const RegisterUserMeetup = async function (req, res) {
     userService = new UserService()
 
     let uid = userService.getUid(req);
-    let count = MeetupList.count({ where: {uuid: req.params.uuid}} ).then(c => {  return c })
+    let count = MeetupList.count({ where: {user_id: uid,uuid: req.params.uuid}} ).then(c => {  return c })
+    console.log("data " +count)
     if(count > 0){
         return res.status(200).json({
             success: false,
