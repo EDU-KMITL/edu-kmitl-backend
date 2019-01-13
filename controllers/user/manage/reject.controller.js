@@ -1,7 +1,7 @@
 /**
  * Created by MisterNT on 5/1/2017.
  */
-const { CourseList } = require('./../../models')
+const { CourseList } = require('./../../../models')
 const Validator = require('validatorjs');
 
 const RejectCoures = async function (req, res) {

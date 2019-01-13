@@ -22,7 +22,7 @@ const ShowCourse = async function (req, res) {
             uid: uid,
             data: CourseLists
         });
-        
+
     }else{
         return res.status(200).json({
             success: false,
