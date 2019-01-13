@@ -5,6 +5,7 @@ const UserService = require('./../../../middleware/UserService')
 const Validator = require('validatorjs');
 const { CourseList } = require('./../../../models')
 const { Course } = require('./../../../models')
+const { User } = require('./../../../models')
 const ShowCourse = async function (req, res) {
     let rules = {
         uuid: 'required'
@@ -15,7 +16,7 @@ const ShowCourse = async function (req, res) {
         userService = new UserService()
 
         let uid = userService.getUid(req);
-        let CourseLists = await CourseList.findAll({ where: { uuid:req.params.uuid }, include: [Course] }).then((res) => { return res })
+        let CourseLists = await CourseList.findAll({ where: { uuid:req.params.uuid }, include: [ { all: true } ]  }).then((res) => { return res })
     
         return res.status(200).json({
             success: true,

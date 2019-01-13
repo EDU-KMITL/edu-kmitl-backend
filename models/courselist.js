@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   CourseList.associate = function(models) {
     CourseList.belongsTo(models.Course, { foreignKey: 'uuid', targetKey: 'uuid' });
+    CourseList.belongsTo(models.User, { foreignKey: 'user_id', targetKey: 'id' });
   };
   return CourseList;
 };
