@@ -21,7 +21,7 @@ const RegisterUserCourse = async function (req, res) {
         return res.status(200).json({
             success: true,
             data: resData,
-            message: "ได้ส่งขอลองคร์อดเรียบร้อย"
+            message: "ได้ส่งคำขอลงคร์อดเรียบร้อย"
         });
     }
 }

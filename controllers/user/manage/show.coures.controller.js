@@ -15,7 +15,7 @@ const ShowCourse = async function (req, res) {
         userService = new UserService()
 
         let uid = userService.getUid(req);
-        let CourseLists = await CourseList.findAll({ where: { user_id: uid , uuid:req.params.uuid }, include: [Course] }).then((res) => { return res })
+        let CourseLists = await CourseList.findAll({ where: { uuid:req.params.uuid }, include: [Course] }).then((res) => { return res })
     
         return res.status(200).json({
             success: true,
