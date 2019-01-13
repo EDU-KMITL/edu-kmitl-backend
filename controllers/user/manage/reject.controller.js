@@ -13,9 +13,6 @@ const RejectCoures = async function (req, res) {
 
     let validation = new Validator(req.params, rules);
     if (validation.passes()) {
-        userService = new UserService()
-
-        let uid = userService.getUid(req);
         let affectedRows = await CourseList.update({ status: 'Reject' }, { where: { user_id:req.params.user_id,uuid: req.params.uuid } }).then((res) => { return res })
         return res.status(200).json({
             success: true,
