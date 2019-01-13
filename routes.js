@@ -33,6 +33,9 @@ const UpgradePermission =  require('./controllers/user/upgrade.permission.contro
 const UserTearcherCourse =  require('./controllers/user/manage/coures.controller')
 const UserTearcherMeetup =  require('./controllers/user/manage/meetup.controller')
 const TeacherViewVideo =  require('./controllers/user/manage/view.vdieo.controller')
+const ShowCourse =  require('./controllers/user/manage/show.coures.controller')
+const ApproveCoures =  require('./controllers/user/manage/approve.coures.controller')
+const RejectCoures =  require('./controllers/user/manage/reject.controller')
 const AddCourse =  require('./controllers/user/manage/add.coures.controller')
 const AddMeetup =  require('./controllers/user/manage/add.meetup.controller')
 const AddVideo =  require('./controllers/user/manage/add.video.controller')
@@ -78,6 +81,9 @@ router.get('/user/upgrade', UpgradePermission);
 router.use('/user/manage', ManageService);
 router.get('/user/manage/coures', UserTearcherCourse);
 router.get('/user/manage/meetup', UserTearcherMeetup);
+router.get('/user/manage/vdieo/:uuid', TeacherViewVideo);
+router.get('/user/manage/show/:uuid', TeacherViewVideo);
+router.get('/user/manage/reject/:uuid', TeacherViewVideo);
 router.get('/user/manage/vdieo/:uuid', TeacherViewVideo);
 router.post('/user/manage/coures/add', AddCourse);
 router.post('/user/manage/meetup/add', AddMeetup);
