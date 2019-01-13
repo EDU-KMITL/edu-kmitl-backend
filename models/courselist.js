@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     uuid: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
     status: {
-      type: Sequelize.ENUM,
+      type: DataTypes.ENUM,
       values: [
         'Approve',
         'Pending',
