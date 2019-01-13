@@ -7,7 +7,8 @@ const Validator = require('validatorjs');
 const ApproveCoures = async function (req, res) {
 
     let rules = {
-        uuid: 'required'
+        uuid: 'required',
+        user_id: 'required'
     };
 
     let validation = new Validator(req.params, rules);
@@ -15,7 +16,7 @@ const ApproveCoures = async function (req, res) {
         userService = new UserService()
 
         let uid = userService.getUid(req);
-        let affectedRows = await CourseList.update({ status: 'Approve' }, { where: { user_id:uid,uuid: req.params.uuid } }).then((res) => { return res })
+        let affectedRows = await CourseList.update({ status: 'Approve' }, { where: { user_id:req.params.user_id,uuid: req.params.uuid } }).then((res) => { return res })
         return res.status(200).json({
             success: true,
             data: affectedRows,
