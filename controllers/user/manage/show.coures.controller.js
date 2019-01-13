@@ -17,7 +17,10 @@ const ShowCourse = async function (req, res) {
 
         let uid = userService.getUid(req);
         let CourseLists = await CourseList.findAll({ where: { uuid:req.params.uuid }, include: [ { all: true } ]  }).then((res) => { return res })
-        Object.keys(CourseLists.User).map(function (key, index) {
+        Object.keys(CourseLists).map(function (key, index) {
+            Object.keys(CourseLists[key]).map(function (key2, index) {
+                delete CourseLists[key].User[key2].password
+            });
             //delete CourseLists.User[key].password
         });
         return res.status(200).json({
